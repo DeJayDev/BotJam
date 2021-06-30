@@ -1,0 +1,5 @@
+token: ''
+bot:
+    command_require_mention: true
+    plugins:
+        - botjam.app
