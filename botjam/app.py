@@ -29,14 +29,17 @@ class JamPlugin(Plugin):
             return event.channel.send_message('That role does not exist. Are you sure this is the right server?')
 
         if not event.guild.members[self.client.id].permissions.can(Permissions.MANAGE_ROLES):
-            raise event.message.reply("You do not have permission to run this command.")
+            raise event.message.reply("I cannot add roles to members in this server.")
 
         amt = len(event.guild.members)
         ticker = 0
         
         for member in event.guild.members.values():
-            member.add_role(roleid)
-            ticker += 1
-            self.log.info('Roled {}/{} users.'.format(ticker, amt))
+            try:
+                member.add_role(roleid)
+                ticker += 1
+                self.log.info('Roled {}/{} users.'.format(ticker, amt))
+            except:
+                pass
             
         return event.channel.send_message('Task complete.')
