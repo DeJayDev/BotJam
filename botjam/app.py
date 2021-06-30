@@ -28,13 +28,14 @@ class JamPlugin(Plugin):
         if roleid not in event.guild.roles:
             return event.channel.send_message('That role does not exist. Are you sure this is the right server?')
 
-        if not event.guild.members[self.client.id].permissions.can(Permissions.MANAGE_ROLES):
-            raise event.message.reply("I cannot add roles to members in this server.")
+        if not event.guild.members[859612093627236353].permissions.can(Permissions.MANAGE_ROLES):
+            raise event.channel.send_message("I cannot add roles to members in this server.")
 
         amt = len(event.guild.members)
         ticker = 0
         
-        for member in event.guild.members.values():
+        members = event.guild.members.values()
+        for member in members:
             try:
                 member.add_role(roleid)
                 ticker += 1
